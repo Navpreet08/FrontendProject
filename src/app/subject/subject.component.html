@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <h2>Subjects</h2>
+  </div>
+  <br/>
+  
+  <span>
+      <button (click)="displaySubjects()" class="btn btn-default">View </button>
+      <button (click)="displayForm()" class="btn btn-default">Add </button>
+    </span>
+  <br/>
+  <br/>
+  <br/>
+  <div class="table-responsive col-md-6" *ngIf="subjectFlag">
+    <table class="table" *ngIf="subjects && subjects.length">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Name </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of subjects; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ subject.name }}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+
+
+  <div *ngIf="addSubjectFlag" class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <label>Name: </label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" placeholder="Enter subject name" #subjectName class="form-control col-md-3">
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Subject: </label>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control col-md-3" (change)="onChangeCourse($event)" required="true">
+            <option value="">  </option>
+            <option *ngFor="let course of courses" [attr.value]="course.id">
+              {{ course.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-2">
+            <button (click)="addSubject(subjectName.value);subjectName.value=''" class="btn btn-default">Add</button>
+        </div>
+      </div>
+     
+    </div>

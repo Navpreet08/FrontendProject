@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <h2>Course</h2>
+</div>
+<br/>
+
+<span>
+    <button (click)="displayCourses()" class="btn btn-default">View </button>
+    <button (click)="displayForm()" class="btn btn-default">Add </button>
+  </span>
+<br/>
+<br/>
+<br/>
+<div class="table-responsive col-md-6" *ngIf="courseFlag">
+  <table class="table" *ngIf="courses && courses.length">
+    <thead>
+      <tr>
+        <th>S. No.</th>
+        <th>Name </th>
+        <th> Batches </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses; let i = index;">
+        <td>{{ i + 1 }}</td>
+        <td>{{ course.name }}</td>
+        <td>
+            <a [routerLink]="['/courses', course.id, 'batches']" class="card-link btn btn-default">
+              Batches
+            </a>
+  
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div *ngIf="addCourseFlag" class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      <label> Name: </label>
+    </div>
+    <div class="col-md-3">
+      <input type="text" placeholder="Enter course name" #courseName class="form-control col-md-3">
+    </div>
+    <div class="col-md-2">
+      <button (click)="addCourse(courseName.value);courseName.value=''" class="btn btn-default">Add</button>
+    </div>
+  </div>
+  
+</div>

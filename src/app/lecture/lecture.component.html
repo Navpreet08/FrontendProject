@@ -1,0 +1,72 @@
+
+
+  <div class="container-fluid">
+      <h2>Lectures</h2>
+    </div>
+    <br/>
+    
+    <span>
+        <button (click)="displayLectures()" class="btn btn-default">View </button>
+        <button (click)="displayForm()" class="btn btn-default">Add </button>
+      </span>
+    <br/>
+    <br/>
+    <br/>
+    <div class="table-responsive col-md-6" *ngIf="lectureFlag">
+      <table class="table" *ngIf="lectures && lectures.length">
+        <thead>
+          <tr>
+            <th>S. No.</th>
+            <th> Lecture Name </th>
+            <th> Teacher Name </th>
+            <th > Subject Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lecture of lectures; let i = index;">
+            <td>{{ i + 1 }}</td>
+            <td>{{ lecture.name }}</td>
+            <td>
+            {{lecture.teacher.name}}
+            </td>
+            <td>
+                {{lecture.subject.name}}
+                </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  
+
+    <div *ngIf="addLectureFlag" class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+            <label>Name: </label>
+          </div>
+          <div class="col-md-3">
+            <input type="text" placeholder="Enter lecture name" #lectureName class="form-control col-md-3">
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Teacher: </label>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control col-md-3" (change)="onChangeTeacher($event)" required="true">
+              <option value="">  </option>
+              <option *ngFor="let teacher of teachers" [attr.value]="teacher.id">
+                {{ teacher.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-2">
+            <button (click)="addLecture(lectureName.value); lectureName.value=''" class="btn btn-default">Add</button>
+          </div>
+        </div>
+       
+      </div>

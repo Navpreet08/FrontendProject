@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <h2>Student Description</h2>
+</div>
+<br/>
+<div *ngIf="student" class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      Student Name:
+    </div>
+    <div class="col-md-3">
+      {{ student.name }}
+    </div>
+    <div class="col-md-1 col-md-offset-1">
+      <label>Select Batch: </label>
+    </div>
+    <div class="col-md-2">
+      <select class="form-control col-md-3" (change)="onChangeBatch($event)" required="true">
+        <option value=""></option>
+        <option *ngFor="let batch of batches" [attr.value]="batch.id">
+          {{ batch.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button (click)="addStudentToBatch();" class="btn btn-default">Enroll</button>
+    </div>
+  </div>
+</div>

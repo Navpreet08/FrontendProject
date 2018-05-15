@@ -1,0 +1,61 @@
+
+
+  <div class="container-fluid">
+      <h2>Batch</h2>
+    </div>
+    <br/>
+    
+    <span>
+        <button (click)="displayBatches()" class="btn btn-default">View </button>
+        <button (click)="displayForm()" class="btn btn-default">Add </button>
+      </span>
+    <br/>
+    <br/>
+    <br/>
+    <div class="table-responsive col-md-6" *ngIf="batchFlag">
+      <table class="table" *ngIf="batches && batches.length">
+        <thead>
+          <tr>
+            <th>S. No.</th>
+            <th>Name </th>
+            <th> Lectures </th>
+            <th> Students </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let batch of batches; let i = index;">
+            <td>{{ i + 1 }}</td>
+            <td>{{ batch.name }}</td>
+            <td>
+                <a [routerLink]="['/courses', courseId, 'batches', batch.id, 'lectures']" class="card-link btn btn-default">
+                  Lectures
+                </a>
+      
+            </td>
+            <td>
+                <a [routerLink]="['/courses', courseId, 'batches', batch.id, 'students']" class="card-link btn btn-default">
+                  Students
+                </a>
+      
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    
+    <div *ngIf="addBatchFlag" class="container-fluid">
+      <div class="row">
+        <div class="col-md-1">
+          <label> Name: </label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" placeholder="Enter batch name" #batchName class="form-control col-md-3">
+        </div>
+        <div class="col-md-2">
+          <button (click)="addBatch(batchName.value);batchName.value=''" class="btn btn-default">Add</button>
+        </div>
+      </div>
+      
+    </div>

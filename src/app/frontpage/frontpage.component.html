@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <h2>Upcoming Batches</h2>
+</div>
+<br/>
+<div class="table-responsive col-md-6">
+    <table class="table" *ngIf="batches && batches.length">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Name </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let batch of batches; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ batch.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

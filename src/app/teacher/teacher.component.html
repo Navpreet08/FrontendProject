@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <h2>Teachers</h2>
+  </div>
+  <br/>
+  
+  <span>
+      <button (click)="displayTeachers()" class="btn btn-default">View </button>
+      <button (click)="displayForm()" class="btn btn-default">Add </button>
+    </span>
+  <br/>
+  <br/>
+  <br/>
+  <div class="table-responsive col-md-6" *ngIf="teacherFlag">
+    <table class="table" *ngIf="teachers && teachers.length">
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Name </th>
+          <th> Subject Name </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers; let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ teacher.name }}</td>
+          <td>{{ teacher.subject.name }}</td>
+
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+
+
+  <div *ngIf="addTeacherFlag" class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <label>Name: </label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" placeholder="Enter teacher name" #teacherName class="form-control col-md-3">
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-2">
+          <label>Subject: </label>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control col-md-3" (change)="onChangeSubject($event)" required="true">
+            <option value="">  </option>
+            <option *ngFor="let subject of subjects" [attr.value]="subject.id">
+              {{ subject.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-2">
+            <button (click)="addTeacher(teacherName.value);teacherName.value=''" class="btn btn-default">Add</button>
+        </div>
+      </div>
+     
+    </div>

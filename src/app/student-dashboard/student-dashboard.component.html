@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <h2>Student</h2>
+</div>
+<br/>
+
+<span>
+  <button (click)="displayStudents()" class="btn btn-default">View </button>
+  <button (click)="displayForm()" class="btn btn-default">Add </button>
+</span>
+<br/>
+<br/>
+<br/>
+<div class="table-responsive col-md-6" *ngIf="studentFlag">
+  <table class="table" *ngIf="students && students.length">
+    <thead>
+      <tr>
+        <th>S. No.</th>
+        <th>Name </th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index;">
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+
+          <a [routerLink]="['/students', student.id]"  class="btn btn-default">
+            See Details
+            </a>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div *ngIf="addStudentFlag" class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      <label> Name: </label>
+    </div>
+    <div class="col-md-3">
+      <input type="text" placeholder="Enter student name" #studentName class="form-control col-md-3">
+    </div>
+    <div class="col-md-2">
+      <button (click)="addStudent(studentName.value);studentName.value=''" class="btn btn-default">Add</button>
+    </div>
+  </div>
+
+</div>
